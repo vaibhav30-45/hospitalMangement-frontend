@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
+
 const BookAppointment = () => {
+  const [isReschedule, setIsReschedule] = useState(false);
+
+  const [appointmentId, setAppointmentId] = useState("");
+
   const [form, setForm] = useState({
     department: "",
     doctor: "",
@@ -18,31 +23,109 @@ const BookAppointment = () => {
     Cardiology: ["Dr. Sharma", "Dr. Mehta"],
     Dermatology: ["Dr. Pooja", "Dr. Singh"],
     Orthopedic: ["Dr. Rana", "Dr. Joshi"],
+    Gynecology: ["Dr. Priya Malhotra", "Dr. Sonal Bajaj","Dr. Kirti Wadhwa"],
+    Pediatrics: ["Dr. Tanya Sethi", "Dr. Harish Maurya","Dr. Smriti Chauhan"],
+    General_Physician: [ "Dr. Rajat Soni","Dr. Kavya Jaiswal","Dr. Samar Prakash"]
   };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Appointment Booked Successfully!");
+
+    if (!isReschedule) {
+     
+      const oldAppointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+      const newAppointment = {
+        id: Date.now(),
+        ...form
+      };
+
+      localStorage.setItem("appointments", JSON.stringify([newAppointment, ...oldAppointments]));
+
+      alert("Appointment Booked Successfully!");
+
+    } else {
+   
+      let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+      let index = appointments.findIndex(ap => ap.id === Number(appointmentId));
+
+      if (index === -1) {
+        alert("Invalid Appointment ID!");
+        return;
+      }
+
+      appointments[index] = { ...appointments[index], ...form };
+
+      localStorage.setItem("appointments", JSON.stringify(appointments));
+
+      alert("Appointment Rescheduled Successfully!");
+    }
+
+   
+    setForm({
+      department: "",
+      doctor: "",
+      date: "",
+      time: "",
+      name: "",
+      mobile: "",
+      email: "",
+      age: "",
+      gender: "",
+      symptoms: "",
+    });
+
+    setAppointmentId("");
   };
 
   return (
     <div className="app-wrapper">
       <div className="form-container">
 
-        <h1>Book Appointment</h1>
+       
+        <div className="switch-buttons">
+          <button 
+            className={!isReschedule ? "active-btn" : ""}
+            onClick={() => setIsReschedule(false)}
+          >
+            Book Appointment
+          </button>
+
+          <button
+            className={isReschedule ? "active-btn" : ""}
+            onClick={() => setIsReschedule(true)}
+          >
+            Reschedule Appointment
+          </button>
+        </div>
+
+        <h1>{isReschedule ? "Reschedule Appointment" : "Book Appointment"}</h1>
 
         <form onSubmit={handleSubmit}>
+          
+          {isReschedule && (
+            <div className="single-row">
+              <label>Appointment ID</label>
+              <input
+                type="text"
+                placeholder="Enter Appointment ID"
+                value={appointmentId}
+                onChange={(e) => setAppointmentId(e.target.value)}
+              />
+            </div>
+          )}
 
-        
           <div className="grid-container">
 
             <div>
               <label>Department</label>
-              <select name="department" onChange={handleChange}>
+              <select name="department" onChange={handleChange} value={form.department}>
                 <option value="">Select Department</option>
                 {Object.keys(doctorList).map((dep) => (
                   <option key={dep}>{dep}</option>
@@ -56,6 +139,7 @@ const BookAppointment = () => {
                 name="doctor"
                 onChange={handleChange}
                 disabled={!form.department}
+                value={form.doctor}
               >
                 <option value="">Select Doctor</option>
                 {form.department &&
@@ -67,41 +151,47 @@ const BookAppointment = () => {
 
             <div>
               <label>Date</label>
-              <input type="date" name="date" onChange={handleChange} />
+              <input type="date" name="date" onChange={handleChange} value={form.date} />
             </div>
 
             <div>
               <label>Time</label>
-              <select name="time" onChange={handleChange}>
+              <select name="time" onChange={handleChange} value={form.time}>
                 <option value="">Select Time</option>
+                <option>11:00 AM</option>
                 <option>10:00 AM</option>
+                <option>09:00 AM</option>
+                <option>10:30 AM</option>
                 <option>12:00 PM</option>
+                <option>1:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
               </select>
             </div>
 
             <div>
               <label>Full Name</label>
-              <input type="text" name="name" onChange={handleChange} />
+              <input type="text" name="name" onChange={handleChange} value={form.name} />
             </div>
 
             <div>
               <label>Age</label>
-              <input type="number" name="age" onChange={handleChange} />
+              <input type="number" name="age" onChange={handleChange} value={form.age} />
             </div>
 
             <div>
               <label>Mobile Number</label>
-              <input type="text" name="mobile" onChange={handleChange} />
+              <input type="text" name="mobile" onChange={handleChange} value={form.mobile} />
             </div>
 
             <div>
               <label>Email</label>
-              <input type="email" name="email" onChange={handleChange} />
+              <input type="email" name="email" onChange={handleChange} value={form.email} />
             </div>
 
             <div>
               <label>Gender</label>
-              <select name="gender" onChange={handleChange}>
+              <select name="gender" onChange={handleChange} value={form.gender}>
                 <option value="">Select Gender</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -110,15 +200,14 @@ const BookAppointment = () => {
 
           </div>
 
-          
-          <label>Symptoms</label>
-          <textarea
-            name="symptoms"
-            rows="3"
-            onChange={handleChange}
-          ></textarea>
+          <div className="symptoms-box">
+            <label>Symptoms</label>
+            <textarea name="symptoms" rows="3" onChange={handleChange} value={form.symptoms}></textarea>
+          </div>
 
-          <button type="submit">Book Appointment</button>
+          <button type="submit">
+            {isReschedule ? "Update Appointment" : "Book Appointment"}
+          </button>
         </form>
 
       </div>

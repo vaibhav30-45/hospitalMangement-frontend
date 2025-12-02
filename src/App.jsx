@@ -1,11 +1,16 @@
 import "./App.css";
-import Appointment from "./Home/patient/BookAppointment";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import BookAppointment from "./Home/Patient/BookAppointment.jsx";
+import Allappointment from "./Home/Doctor/Allappointment";
 
 function App() {
   return (
-    <div className="container">
-      <Appointment />
-    </div>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<BookAppointment />} />
+        <Route path="/all-appointments" element={<Allappointment />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
