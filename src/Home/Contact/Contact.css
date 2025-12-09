@@ -1,0 +1,113 @@
+
+
+.contact-header {
+  width: 88%;
+  padding: 80px 80px;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, #56a9d8, #007bff);
+  color: white;
+  margin: 20px 0;
+}
+
+.main-title {
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 10px;
+  font-family:'Trebuchet MS', sans-serif;
+}
+
+
+.contact-wrapper {
+  width: 88%;
+  margin-top: 20px;
+}
+
+
+
+.contact-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+
+.contact-left {
+  width: 70%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contact-left h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  color:  #007bff;
+  font-size: 30px;
+
+}
+
+.contact-left form input,
+.contact-left form textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.contact-left form input:focus,
+.contact-left form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.contact-left button {
+  padding: 14px;
+  width: 100%;
+  background: #007bff;
+  color: white;
+  border: none;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-left button:hover {
+  background: #1e2f66;
+}
+.contact-right h2 {
+ color: #007bff;
+ text-align: center;
+ margin-left: 100px;
+ margin-top: 60px;
+ font-size: 26px;
+}
+.contact-right p{
+  font-size: 22px;
+  margin-left: 30px;
+}
+.social-icons{
+    margin-top: 55px;
+    display: flex;
+    gap: 15px;
+    margin-left: 30px;
+}
+
+.social-icons a{
+    font-size: 24px;
+    color: #333;
+    transition: 0.3s;
+}
+
+.social-icons a:hover{
+    color: #ff6600;
+}
+.map-container {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+

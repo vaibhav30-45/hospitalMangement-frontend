@@ -1,0 +1,130 @@
+.lab-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 40px;
+  gap: 60px;
+}
+
+
+.lab-left {
+  flex: 1.1;
+  display: flex;
+  justify-content: center;
+}
+
+.lab-image {
+  width: 100%;
+  max-width: 520px;
+  object-fit: contain;
+  border-radius: 15px;
+ 
+}
+
+
+.lab-right {
+  flex: 1.5;
+}
+
+.lab-badge {
+  color: wheat;
+  background: #2a4bff;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  font-family:'Times New Roman', Times, serif;
+}
+h1{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+.lab-desc {
+  margin-top: 15px;
+  color:#104c8c;
+  line-height: 1.6;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 18px;
+   font-weight: 300;
+}
+
+.lab-features {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  font-family:'Times New Roman', Times, serif;
+  font-weight: 400;
+}
+
+.lab-features li {
+  margin: 10px 0;
+  font-size: 16px;
+}
+.features-container {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  display: flex;
+  gap: 25px;
+  padding: 40px;
+  background: #eef4ff; 
+  justify-content: center;
+}
+
+.feature-card {
+  width: 260px;
+  background: #fff;
+  border-radius: 25px;
+  padding: 35px 25px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 0 8px rgba(0,0,0,0.07);
+}
+
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e9f0ff;
+  color: #0a2e73;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #0a2e73;
+  font-weight: 700;
+}
+
+.feature-card hr {
+  width: 100%;
+  opacity: 0.3;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  color: #222;
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 40px;
+}
+
+.arrow-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a2e73;
+}
