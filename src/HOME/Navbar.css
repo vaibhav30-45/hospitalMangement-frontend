@@ -1,0 +1,107 @@
+.navbar {
+  width: 100%;
+  height: 70px;
+  position: sticky;
+  top: 0; 
+  /* background: rgba(0, 123, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
+  background: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  color: white;
+  z-index: 1000;
+  /* transition: background 0.3s ease, box-shadow 0.3s ease; */
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 200px;        
+  width: auto;
+  object-fit: contain;
+}
+
+/* Menu */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Auth buttons */
+.nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.login-btn {
+  background: transparent;
+  color: white;
+  border: 1.5px solid white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.signup-btn {
+  background: white;
+  color: #007bff;
+  border: none;
+  padding: 7px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+/* Navbar links fix */
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Center menu remains centered */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+/* Right corner emergency box */
+.emergency-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.emergency-text strong {
+  color: #ffdddd;
+}
+
+.mail-text strong {
+  color: #e0f2ff;
+}
+
+.divider {
+  opacity: 0.6;
+}
+
+
+

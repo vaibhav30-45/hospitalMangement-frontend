@@ -1,0 +1,81 @@
+.ourdoctors{
+  width: 100%;
+  height: 60vh;
+
+ 
+  background:
+    linear-gradient(
+      rgba(15, 23, 42, 0.75),
+      rgba(15, 23, 42, 0.75)
+    ),
+    url("https://plus.unsplash.com/premium_photo-1681842906523-f27efd0d1718?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.doctorscontent {
+  text-align: center;
+  color: #ffffff;
+  max-width: 700px;
+  padding: 0 20px;
+}
+
+.doctorscontent h1 {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.doctorscontent p {
+  font-size: 26px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+.doctor-container {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #f5f7fa;
+}
+
+.doctor-card {
+  width: 260px;
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
+}
+
+.doctor-image {
+  padding: 20px;
+}
+
+.doctor-image img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.doctor-info h3 {
+  font-size: 22px;
+  color: #007bff;
+  margin-bottom: 8px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.doctor-info p {
+  font-size: 18px;
+  color: #070707;
+  padding: 0 10px;
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}

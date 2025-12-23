@@ -1,0 +1,64 @@
+.specialities-page {
+  background-color: #f8fafc;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Banner */
+.specialities-banner {
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.specialities-banner h1 {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.specialities-banner p {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Cards */
+.specialities-container {
+  max-width: 1200px;
+  margin: -60px auto 60px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.speciality-card {
+  background: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.speciality-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px #007bff;
+}
+
+.speciality-card .icon {
+  font-size: 48px;
+  color: #2c8ad6;
+  margin-bottom: 20px;
+}
+
+.speciality-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
