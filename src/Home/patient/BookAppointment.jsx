@@ -13,7 +13,7 @@ const BookAppointment = () => {
     time: "",
     name: "",
     mobile: "",
-    email: "",
+    Email :"",
     age: "",
     gender: "",
     symptoms: "",
@@ -192,10 +192,10 @@ setLastAppointmentId(newAppointment.id);
               <input type="text" name="mobile" onChange={handleChange} value={form.mobile} />
             </div>
 
-            <div>
+            {/* <div>
               <label>Email</label>
               <input type="email" name="email" onChange={handleChange} value={form.email} />
-            </div>
+            </div> */}
 
             <div>
               <label>Gender</label>

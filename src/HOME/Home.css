@@ -157,8 +157,8 @@
   font-weight: 600;
   cursor: pointer;
 
-  width: auto;            /* IMPORTANT */
-  display: inline-block;  /* IMPORTANT */
+  width: auto;            
+  display: inline-block;  
 
   transition: all 0.3s ease;
 }
@@ -353,7 +353,7 @@
 /* IMAGE WRAPPER */
 .doctor-img {
   width: 100%;
-  height: 220px;           /* 🔥 fixed height */
+  height: 220px;         
   overflow: hidden;
   border-radius: 14px;
   margin-bottom: 15px;
@@ -363,8 +363,8 @@
 .doctor-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* 🔥 main fix */
-  object-position: top;    /* face upar rahe */
+  object-fit: cover;      
+  object-position: top;    
 }
 
 /* TEXT */
@@ -381,15 +381,15 @@
   text-align: center;
   font-size: 32px;
   margin-bottom: 30px;
-  color: #0d6efd; /* blue theme */
+  color: #0d6efd;
 }
 .doctor-slider {
   max-width: 1200px;
   margin: auto;
-  padding: 0 10px;   /* side extra space kam */
+  padding: 0 10px;   
 }
 .doctor-card {
-  margin: 0 10px;   /* 🔥 pehle zyada hoga (20–30px) */
+  margin: 0 10px;   
 }
 
 
@@ -489,5 +489,201 @@
 
   .testimonial-card p {
     font-size: 14px;
+  }
+}
+.Read-more {
+  display: inline-block;
+
+  margin: 40px auto 60px;   
+  padding: 12px 32px;
+
+  background: linear-gradient(135deg, #0d6efd, #0a58ca);
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  border-radius: 25px;
+  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
+
+  transition: all 0.3s ease;
+}
+
+/* Center alignment */
+.Read-more-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* Hover effect */
+.Read-more:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(13, 110, 253, 0.45);
+  background: linear-gradient(135deg, #0a58ca, #084298);
+}
+
+/* HOME RESPONSIVE  */
+
+/* Tablets */
+@media (max-width: 992px) {
+
+  /* HERO */
+  .hero {
+    height: 70vh;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 35px 25px;
+  }
+
+  .service-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* SPECIALITIES */
+  .specialities-heading {
+    font-size: 28px;
+  }
+
+  /* DOCTORS */
+  .doctor-img {
+    height: 200px;
+  }
+
+  .home-doctors h2 {
+    font-size: 28px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero {
+    height: auto;
+  }
+
+  .hero-overlay {
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  /* SERVICES */
+  .service-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    height: 220px;
+  }
+
+  /* ABOUT */
+  .home-about {
+    padding: 60px 15px;
+  }
+
+  .home-about-card {
+    padding: 30px 20px;
+  }
+
+  .home-about-card h2 {
+    font-size: 24px;
+  }
+
+  /* SPECIALITIES */
+  .specialities-heading {
+    font-size: 26px;
+    margin-bottom: 35px;
+  }
+
+  /* DOCTORS */
+  .doctor-img {
+    height: 180px;
+  }
+
+  .doctor-card h4 {
+    font-size: 15px;
+  }
+
+  .doctor-card p {
+    font-size: 13px;
+  }
+
+  /* TESTIMONIAL */
+  .testimonial-section {
+    padding: 45px 15px;
+  }
+
+  .testimonial-card {
+    padding: 22px 18px;
+  }
+
+  .testimonial-card p {
+    font-size: 14px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+
+  /* HERO */
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  /* BUTTONS */
+  .hero-btn,
+  .btn-primary,
+  .btn-outline {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  /* SERVICES */
+  .service-card {
+    height: 200px;
+  }
+
+  /* ABOUT */
+  .home-about-card h2 {
+    font-size: 22px;
+  }
+
+  /* SPECIALITIES */
+  .speciality-card {
+    padding: 30px 18px;
+  }
+
+  /* READ MORE */
+  .Read-more {
+    font-size: 13px;
+    padding: 10px 26px;
   }
 }

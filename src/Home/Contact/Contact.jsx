@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Contact.css";
 
 const Contact = () => {
-  // ✅ Form State
+  /*Form State */
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -10,7 +10,7 @@ const Contact = () => {
     message: "",
   });
 
-  // ✅ Input Change Handle
+  /*Input Change Handle */
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,7 +18,7 @@ const Contact = () => {
     });
   };
 
-  // ✅ Form Submit → Backend API Call
+  /*Form Submit → Backend API Call*/
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -59,7 +59,7 @@ const Contact = () => {
       <div className="contact-wrapper">
         <div className="contact-container">
           
-          {/* ✅ LEFT FORM (Backend Connected) */}
+          {/*  LEFT FORM (Backend Connected) */}
           <div className="contact-left">
             <h2>Get in Touch</h2>
 
@@ -103,7 +103,7 @@ const Contact = () => {
             </form>
           </div>
 
-          {/* ✅ RIGHT SIDE (UNCHANGED AS YOU SAID) */}
+          {/*  RIGHT SIDE */}
           <div className="contact-right">
             <h2>Contact Details</h2>
             <br />
@@ -120,7 +120,7 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* ✅ MAP (UNCHANGED AS YOU SAID) */}
+      {/* */}
       <div className="map-container">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1730.4502532837778!2d77.24051025281832!3d28.65629490029771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfce26ec085ef%3A0x441e32f4fa5002fb!2sRed%20Fort!5e0!3m2!1sen!2sin!4v1764754026747!5m2!1sen!2sin"

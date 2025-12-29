@@ -1,5 +1,5 @@
 .app-wrapper {
-  background: url("https://t3.ftcdn.net/jpg/02/38/08/42/360_F_238084232_5XhGUddDZezzJxybvVXzfPp8cOKAuqRp.jpg")
+  background: url("../../assets/bg-app.png")
     no-repeat center center/cover;
   min-height: 100vh;
   display: flex;
@@ -103,4 +103,103 @@ button:hover {
 .status-box h3{
 text-align: center;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* ============ APP FORM RESPONSIVE ============ */
+
+/* Tablets */
+@media (max-width: 992px) {
+
+  .form-container {
+    padding: 25px;
+  }
+
+  .grid-container {
+    gap: 25px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .app-wrapper {
+    padding: 15px;
+    align-items: flex-start;   /* 🔥 form upar se start ho */
+  }
+
+  .form-container {
+    width: 100%;
+    padding: 22px 20px;
+    margin-top: 30px;
+  }
+
+  /* Grid → single column */
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+    padding: 9px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  .symptoms-box {
+    width: 100%;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 11px;
+  }
+
+  /* Switch buttons */
+  .switch-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .switch-buttons button {
+    font-size: 14px;
+    padding: 9px 14px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .form-container {
+    padding: 18px 16px;
+    border-radius: 12px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 15px;
+  }
+
+  .status-box {
+    font-size: 14px;
+    padding: 12px;
+  }
 }

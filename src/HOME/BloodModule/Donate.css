@@ -1,0 +1,77 @@
+
+.donor-bg {
+  min-height: 100vh;
+  background: url("../../assets/Blood-Bank.jpg") no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.donor-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Foreground content */
+.donor-page {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+/* Heading */
+.donor-page h1 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+
+.donor-quote {
+  color: red;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+/* Form Card */
+.donor-form {
+  max-width: 480px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  display: grid;
+  gap: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Inputs */
+.donor-form input,
+.donor-form select {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Button */
+.donor-form button {
+  background: #c62828;
+  color: white;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.donor-form button:hover {
+  background: #a91f1f;
+}
