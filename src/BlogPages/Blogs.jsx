@@ -5,6 +5,7 @@ import blogsData from "./BlogData";
 import "./Blog.css";
 
 const Blogs = () => {
+  
   return (
     <div className="blogs-page">
       <h2 className="blogs-heading">Our Latest Blogs</h2>

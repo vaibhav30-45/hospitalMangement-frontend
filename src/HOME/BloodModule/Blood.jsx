@@ -1,19 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./Blood.css";
 
-const bloodData = [
-  { group: "A+", units: 12, status: "available" },
-  { group: "A-", units: 4, status: "low" },
-  { group: "B+", units: 8, status: "available" },
-  { group: "B-", units: 2, status: "low" },
-  { group: "AB+", units: 0, status: "not" },
-  { group: "O+", units: 15, status: "available" },
-  { group: "O-", units: 1, status: "low" },
-  { group: "AB-", units: 1, status: "low" },
-];
-
 const Blood = () => {
+  // State
+  const [bloodData, setBloodData] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     bloodGroup: "",
@@ -22,45 +14,86 @@ const Blood = () => {
     urgency: "Normal",
   });
 
+  // Fetch blood inventory from backend
+  useEffect(() => {
+    fetchBloodData();
+  }, []);
+
+  const fetchBloodData = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/blood");
+      setBloodData(res.data);
+    } catch (error) {
+      console.log("Error fetching blood data", error);
+    }
+  };
+
+  // Get status for CSS and text
+  const getStatus = (units) => {
+    if (units === 0) return "not";
+    if (units <= 2) return "low";
+    return "available";
+  };
+
+  // Form field change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // Submit blood request
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Blood request submitted successfully!");
+    try {
+      await axios.post(
+        "http://localhost:5000/api/blood/request",
+        formData
+      );
+
+      alert("Blood request submitted successfully ❤️");
+
+      setFormData({
+        name: "",
+        bloodGroup: "",
+        units: "",
+        contact: "",
+        urgency: "Normal",
+      });
+
+      // Refresh inventory
+      fetchBloodData();
+    } catch (error) {
+      alert(error.response?.data?.message || "Blood request failed");
+    }
   };
 
   return (
     <div className="blood-page">
+      {/* Hero Section */}
       <div className="blood-hero">
-        {/* Header */}
         <div className="blood-header">
           <h1>Blood Bank</h1>
           <p>Save Lives by Donating Blood</p>
         </div>
-
-        {/* Emergency */}
         <div className="emergency-box">
           🚨 Emergency Blood Required? Call: <strong>+91 98774 98773</strong>
         </div>
       </div>
 
-      {/* Availability */}
+      {/* Blood Availability */}
       <div className="blood-availability-section">
         <h2 className="section-title">
           <strong>Blood Availability</strong>
         </h2>
 
         <div className="blood-grid">
-          {bloodData.map((item, index) => (
-            <div className={`blood-card ${item.status}`} key={index}>
-              <h3>{item.group}</h3>
+          {bloodData.map((item) => (
+            <div className={`blood-card ${getStatus(item.units)}`} key={item._id}>
+              <h3>{item.bloodGroup}</h3>
               <p>{item.units} Units</p>
               <span className="status">
-                {item.status === "available"
+                {getStatus(item.units) === "available"
                   ? "Available"
-                  : item.status === "low"
+                  : getStatus(item.units) === "low"
                   ? "Low Stock"
                   : "Not Available"}
               </span>
@@ -77,11 +110,17 @@ const Blood = () => {
         <input
           type="text"
           name="name"
-          placeholder="Patient Name"
+          value={formData.name}
           onChange={handleChange}
+          placeholder="Patient Name"
           required
         />
-        <select name="bloodGroup" onChange={handleChange} required>
+        <select
+          name="bloodGroup"
+          value={formData.bloodGroup}
+          onChange={handleChange}
+          required
+        >
           <option value="">Select Blood Group</option>
           <option>A+</option>
           <option>A-</option>
@@ -94,18 +133,24 @@ const Blood = () => {
         <input
           type="number"
           name="units"
-          placeholder="Required Units"
+          value={formData.units}
           onChange={handleChange}
+          placeholder="Required Units"
           required
         />
         <input
           type="tel"
           name="contact"
-          placeholder="Contact Number"
+          value={formData.contact}
           onChange={handleChange}
+          placeholder="Contact Number"
           required
         />
-        <select name="urgency" onChange={handleChange}>
+        <select
+          name="urgency"
+          value={formData.urgency}
+          onChange={handleChange}
+        >
           <option>Normal</option>
           <option>Emergency</option>
         </select>
