@@ -1,23 +1,35 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BookAppointment from "./Home/Patient/BookAppointment.jsx";
+import BookAppointment from "./Home/Patient/BookAppointment";
 import Allappointment from "./Home/Doctor/Allappointment";
-import AmbulancePage  from "./Home/Services/AmbulancePage.jsx";
-import Laboratory from "./Home/Services/Laboratory.jsx";
-import Contact from "./Home/Contact/Contact.jsx";
+import Laboratory from "./Home/Services/Laboratory";
+import Contact from "./Home/Contact/Contact";
+import Aboutus from "./Home/Aboutus/Aboutus";
+import Ourdoctor from "./Home/Doctor/Ourdoctor";
 
+import AdminLayout from "./admin/layout/AdminLayout";
+import AdminHome from "./admin/components/AdminHome";
 
 function App() {
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <Routes>
+
+        {/* USER ROUTES */}
         <Route path="/" element={<BookAppointment />} />
         <Route path="/all-appointments" element={<Allappointment />} />
-        <Route path="/ambulancepage" element={<AmbulancePage />} />
         <Route path="/laboratory" element={<Laboratory />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/aboutus" element={<Aboutus />} />
+        <Route path="/ourdoctor" element={<Ourdoctor />} />
 
-        
+        {/* ADMIN ROUTES */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminHome />} />
+          {/* future */}
+          {/* <Route path="doctors" element={<AdminDoctors />} /> */}
+          {/* <Route path="appointments" element={<AdminAppointments />} /> */}
+        </Route>
+
       </Routes>
     </BrowserRouter>
   );

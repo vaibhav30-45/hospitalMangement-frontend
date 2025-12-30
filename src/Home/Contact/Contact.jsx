@@ -31,7 +31,11 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+    if (!response.ok) {
+  throw new Error("Network response was not ok");
+}
+const data = await response.json();
+
 
       if (data.success) {
         alert("✅ Message Sent Successfully!");
@@ -120,22 +124,10 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* ✅ MAP (UNCHANGED AS YOU SAID) */}
-      <div className="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1730.4502532837778!2d77.24051025281832!3d28.65629490029771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfce26ec085ef%3A0x441e32f4fa5002fb!2sRed%20Fort!5e0!3m2!1sen!2sin!4v1764754026747!5m2!1sen!2sin"
-          width="100%"
-          height="400"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </div>
+    
 
     </div>
   );
 };
 
 export default Contact;
-

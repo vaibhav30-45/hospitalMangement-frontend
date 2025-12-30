@@ -32,7 +32,12 @@ const BookAppointment = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
- 
+ const [lastStatus, setLastStatus] = useState("");
+  
+
+
+const [lastAppointmentId, setLastAppointmentId] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -40,10 +45,13 @@ const BookAppointment = () => {
      
       const oldAppointments = JSON.parse(localStorage.getItem("appointments")) || [];
 
-      const newAppointment = {
-        id: Date.now(),
-        ...form
-      };
+     const newAppointment = {
+       id: Date.now(),
+       status: "Pending",   
+  ...form
+};
+     setLastStatus("Pending");
+setLastAppointmentId(newAppointment.id);
 
       localStorage.setItem("appointments", JSON.stringify([newAppointment, ...oldAppointments]));
 
@@ -209,6 +217,23 @@ const BookAppointment = () => {
             {isReschedule ? "Update Appointment" : "Book Appointment"}
           </button>
         </form>
+    {lastStatus && (
+  <div className="status-box">
+    <h3> Your Appointment Booked Successfully </h3>
+    <p><strong>Appointment ID:</strong> {lastAppointmentId}</p>
+
+    <p>
+      <strong>Status:</strong>{" "}
+      <span style={{ color: "orange", fontWeight: "bold" }}>
+        {lastStatus}
+      </span>
+    </p>
+
+    <p style={{ fontSize: "16px", color: "#b42121ff" }}>
+      Please wait for doctor confirmation.
+    </p>
+  </div>
+)}
 
       </div>
     </div>

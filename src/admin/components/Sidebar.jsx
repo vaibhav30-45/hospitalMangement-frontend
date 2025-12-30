@@ -1,0 +1,45 @@
+import { Link } from "react-router-dom";
+import {
+  FaHome,
+  FaUserMd,
+  FaNewspaper,
+  FaFlask,
+  FaTint,
+  FaCog,
+  FaUserShield,
+} from "react-icons/fa";
+import { MdEventAvailable, MdContactMail } from "react-icons/md";
+
+const Sidebar = () => {
+  return (
+    <div className="sidebar">
+
+      {/* ADMIN INFO */}
+      <div className="sidebar-user">
+        <FaUserShield />
+        <span>Admin User</span>
+      </div>
+
+      <p className="admin-email">admin@hospital.com</p>
+
+      <button className="logout-btn">Log out</button>
+
+      <ul>
+        <li><Link to="/admin" className="menu-item"><FaHome /> Home</Link></li>
+        <li><Link to="/admin/doctors" className="menu-item"><FaUserMd /> Doctors</Link></li>
+        <li><Link to="/admin/appointments" className="menu-item"><MdEventAvailable /> Appointments</Link></li>
+        <li><Link to="/admin/articles" className="menu-item"><FaNewspaper /> Articles</Link></li>
+        <li><Link to="/admin/laboratory" className="menu-item"><FaFlask /> Laboratory</Link></li>
+        <li><Link to="/admin/bloodlink" className="menu-item"><FaTint /> Bloodlink</Link></li>
+        <li><Link to="/admin/contactus" className="menu-item"><MdContactMail /> Contact Us</Link></li>
+        <li><Link to="/admin/settings" className="menu-item"><FaCog /> Settings</Link></li>
+      </ul>
+
+    </div>
+  );
+};
+
+export default Sidebar;
+
+
+
