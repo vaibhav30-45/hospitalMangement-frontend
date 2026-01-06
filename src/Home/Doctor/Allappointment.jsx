@@ -25,20 +25,16 @@ const Allappointment = () => {
           <tr>
            
          <th>Patient</th>
-            <th>Department</th>
-           
-         <th>Doctor</th>
+          <th>Department</th>
+            <th>Doctor</th>
             <th>Date</th>
           <th>Time</th>
             <th>Mobile</th>
               <th>Gender</th>
             <th>Symptoms</th>
-    </tr>
+         </tr>
         </thead>
-
-        <tbody>
-         
-         
+         <tbody>
           {cleanAppointments.map((item, index) => (
             <tr key={index}>
               <td>{item.name}</td>

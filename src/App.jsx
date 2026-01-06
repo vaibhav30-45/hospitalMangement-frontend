@@ -5,9 +5,12 @@ import Laboratory from "./Home/Services/Laboratory";
 import Contact from "./Home/Contact/Contact";
 import Aboutus from "./Home/Aboutus/Aboutus";
 import Ourdoctor from "./Home/Doctor/Ourdoctor";
-
+import AdminLogin from "./admin/auth/AdminLogin";
 import AdminLayout from "./admin/layout/AdminLayout";
 import AdminHome from "./admin/components/AdminHome";
+import ProtectedRoute from "./admin/auth/ProtectedRoute";
+import AdminDoctors from "./admin/pages/AdminDoctors";
+
 
 function App() {
   return (
@@ -21,13 +24,16 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/ourdoctor" element={<Ourdoctor />} />
-
-        {/* ADMIN ROUTES */}
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminHome />} />
-          {/* future */}
-          {/* <Route path="doctors" element={<AdminDoctors />} /> */}
-          {/* <Route path="appointments" element={<AdminAppointments />} /> */}
+        <Route index element={<AdminHome />} />
+         <Route path="doctors" element={<AdminDoctors />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+         <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+              </ProtectedRoute>}></Route>
         </Route>
 
       </Routes>
