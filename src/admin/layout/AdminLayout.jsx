@@ -7,7 +7,7 @@ const AdminLayout = () => {
     <div className="admin-layout">
       <Sidebar />
       <div className="admin-content">
-        <Outlet />
+        <Outlet /> {/* Renders child routes */}
       </div>
     </div>
   );

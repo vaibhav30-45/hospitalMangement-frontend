@@ -37,16 +37,16 @@ const Sidebar = () => {
         </li>
 
         <li>
-          <Link to="/admin/appointments" className="menu-item">
+          <Link to="/admin/allappointments" className="menu-item">
             <MdEventAvailable /> Appointments
           </Link>
         </li>
 
-        <li>
-          <Link to="/admin/articles" className="menu-item">
-            <FaNewspaper /> Articles
-          </Link>
-        </li>
+      <li>
+      <Link to="/admin/blogs" className="menu-item">
+      <FaNewspaper /> Articles
+     </Link>
+    </li>
 
         <li>
           <Link to="/admin/laboratory" className="menu-item">
@@ -65,6 +65,8 @@ const Sidebar = () => {
             <FaCog /> Settings
           </Link>
         </li>
+      
+
       </ul>
 
     </div>

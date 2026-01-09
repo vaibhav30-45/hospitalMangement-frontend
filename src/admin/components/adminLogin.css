@@ -1,0 +1,102 @@
+/* FULL PAGE CENTER */
+.admin-login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #d7eff7, #eaf7fb);
+  padding: 20px;
+}
+
+/* CARD */
+.admin-login-card {
+  background: #ffffff;
+  padding: 40px;
+  width: 380px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ICON */
+.icon-box {
+  font-size: 60px;
+  color: #0ea5e9;
+  margin-bottom: 10px;
+}
+
+/* TITLE */
+.admin-login-card h2 {
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #333;
+}
+
+/* INPUT GROUP */
+.input-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 6px;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #0ea5e9;
+  outline: none;
+  box-shadow: 0 0 4px rgba(14, 165, 233, 0.4);
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  background: #0284c7;
+}
+
+/* FORGOT */
+.forgot-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #0ea5e9;
+  cursor: pointer;
+}
+
+.forgot-text:hover {
+  text-decoration: underline;
+}

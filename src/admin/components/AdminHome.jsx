@@ -1,4 +1,5 @@
 import StatusCards from "../components/StatusCards";
+import { Link } from "react-router-dom";
 
 const AdminHome = () => {
   return (
@@ -23,8 +24,11 @@ const AdminHome = () => {
 
         <div className="info-card">
           <h3>Quick Actions</h3>
-          <button className="primary-btn">Add Doctor</button>
-        </div>
+         
+      <Link to="/admin/doctors">
+     <button className="primary-btn">Add Doctor</button>
+      </Link>
+         </div>
       </div>
 
     </div>
