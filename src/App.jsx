@@ -1,18 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Navbar from "./Home/Navbar";
+import Navbar from "./HOME/Navbar.jsx";
 import About from "./HOME/About/About";
-import Specialities from "./Home/Specialities/Specialities";
-import Home from "./Home/Home";
+import Specialities from "./HOME/Specialities/Specialities.jsx";
+import Home from "./HOME/Home.jsx";
 import Footer from "./HOME/Footer";
 import Contact from "./HOME/Contact";
-import BookAppointment from "./Home/patient/BookAppointment";
+import BookAppointment from "./HOME/Patient/BookAppointment.jsx";
 import Doctors from "./HOME/Docters/Doctors";
-import Blood from "./Home/BloodModule/Blood";
-import DonorRegistration from "./Home/BloodModule/Donate";
-import Blogs from "./BlogPages/Blogs";
-import BlogDetails from "./BlogPages/BlogDetails";
-import Laboratory from "./Home/Services/Laboratory";
+import Blood from "./HOME/BloodModule/Blood.jsx";
+import DonorRegistration from "./HOME/BloodModule/Donate.jsx";
+import Blogs from "./BlogPages/Blogs.jsx";
+import BlogDetails from "./BlogPages/BlogDetails.jsx";
+import Laboratory from "./HOME/Services/Laboratory.jsx";
 
 function App() {
   return (

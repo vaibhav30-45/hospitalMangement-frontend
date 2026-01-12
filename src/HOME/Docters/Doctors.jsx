@@ -38,7 +38,7 @@ const Ourdoctor = () => {
           doctors.map((doc) => (
             <div className="doctor-card" key={doc._id}>
               <div className="doctor-image">
-                <img src={doc.image} alt={doc.name} />
+                <img src={`http://localhost:5000${doc.image}`} alt={doc.name} />
               </div>
 
               <div className="doctor-info">

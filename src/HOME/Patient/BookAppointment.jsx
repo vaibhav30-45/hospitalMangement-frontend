@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BookAppointment.css";
+import axios from "axios";
 
 const BookAppointment = () => {
   const [isReschedule, setIsReschedule] = useState(false);
-
   const [appointmentId, setAppointmentId] = useState("");
+
+  const [doctors, setDoctors] = useState([]);
+  const [departments, setDepartments] = useState([]);
 
   const [form, setForm] = useState({
     department: "",
     doctor: "",
     date: "",
     time: "",
-    name: "",
+    fullName: "",
     mobile: "",
     email: "",
     age: "",
@@ -19,84 +22,83 @@ const BookAppointment = () => {
     symptoms: "",
   });
 
-  const doctorList = {
-    Cardiology: ["Dr. Sharma", "Dr. Mehta"],
-    Dermatology: ["Dr. Pooja", "Dr. Singh"],
-    Orthopedic: ["Dr. Rana", "Dr. Joshi"],
-    Gynecology: ["Dr. Priya Malhotra", "Dr. Sonal Bajaj","Dr. Kirti Wadhwa"],
-    Pediatrics: ["Dr. Tanya Sethi", "Dr. Harish Maurya","Dr. Smriti Chauhan"],
-    General_Physician: [ "Dr. Rajat Soni","Dr. Kavya Jaiswal","Dr. Samar Prakash"]
-  };
+  const [lastStatus, setLastStatus] = useState("");
+  const [lastAppointmentId, setLastAppointmentId] = useState("");
+
+  /* ================= FETCH DOCTORS FROM BACKEND ================= */
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/doctors");
+        setDoctors(res.data);
+
+        // unique departments from doctor.title
+        const uniqueDepartments = [
+          ...new Set(res.data.map((doc) => doc.title)),
+        ];
+        setDepartments(uniqueDepartments);
+      } catch (error) {
+        console.error("Failed to load doctors");
+      }
+    };
+
+    fetchDoctors();
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
- const [lastStatus, setLastStatus] = useState("");
-  
-
-
-const [lastAppointmentId, setLastAppointmentId] = useState("");
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!isReschedule) {
-     
-      const oldAppointments = JSON.parse(localStorage.getItem("appointments")) || [];
+    try {
+      if (!isReschedule) {
+        // BOOK
+        const res = await axios.post(
+          "http://localhost:5000/api/appointments/book",
+          {
+            ...form,
+            status: "Pending",
+          }
+        );
 
-     const newAppointment = {
-       id: Date.now(),
-       status: "Pending",   
-  ...form
-};
-     setLastStatus("Pending");
-setLastAppointmentId(newAppointment.id);
+        setLastStatus(res.data.appointment.status);
+        setLastAppointmentId(res.data.appointment._id);
 
-      localStorage.setItem("appointments", JSON.stringify([newAppointment, ...oldAppointments]));
+        alert("Appointment Booked Successfully");
+      } else {
+        // RESCHEDULE
+        await axios.put(
+          `http://localhost:5000/api/appointments/reschedule/${appointmentId}`,
+          form
+        );
 
-      alert("Appointment Booked Successfully!");
-
-    } else {
-   
-      let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
-
-      let index = appointments.findIndex(ap => ap.id === Number(appointmentId));
-
-      if (index === -1) {
-        alert("Invalid Appointment ID!");
-        return;
+        alert("Appointment Rescheduled Successfully");
       }
 
-      appointments[index] = { ...appointments[index], ...form };
+      setForm({
+        department: "",
+        doctor: "",
+        date: "",
+        time: "",
+        fullName: "",
+        mobile: "",
+        email: "",
+        age: "",
+        gender: "",
+        symptoms: "",
+      });
 
-      localStorage.setItem("appointments", JSON.stringify(appointments));
-
-      alert("Appointment Rescheduled Successfully!");
+      setAppointmentId("");
+    } catch (error) {
+      alert("Something went wrong");
     }
-
-   
-    setForm({
-      department: "",
-      doctor: "",
-      date: "",
-      time: "",
-      name: "",
-      mobile: "",
-      email: "",
-      age: "",
-      gender: "",
-      symptoms: "",
-    });
-
-    setAppointmentId("");
   };
 
   return (
     <div className="app-wrapper">
       <div className="form-container">
-
-       
         <div className="switch-buttons">
           <button 
             className={!isReschedule ? "active-btn" : ""}
@@ -130,13 +132,12 @@ setLastAppointmentId(newAppointment.id);
           )}
 
           <div className="grid-container">
-
             <div>
               <label>Department</label>
               <select name="department" onChange={handleChange} value={form.department}>
                 <option value="">Select Department</option>
-                {Object.keys(doctorList).map((dep) => (
-                  <option key={dep}>{dep}</option>
+                {departments.map((dep) => (
+                  <option key={dep} value={dep}>{dep}</option>
                 ))}
               </select>
             </div>
@@ -150,9 +151,10 @@ setLastAppointmentId(newAppointment.id);
                 value={form.doctor}
               >
                 <option value="">Select Doctor</option>
-                {form.department &&
-                  doctorList[form.department].map((doc) => (
-                    <option key={doc}>{doc}</option>
+                {doctors
+                .filter((doc) => doc.title === form.department)
+                .map((doc) => (
+                    <option key={doc._id} value={doc.name}>{doc.name}</option>
                   ))}
               </select>
             </div>
@@ -179,7 +181,7 @@ setLastAppointmentId(newAppointment.id);
 
             <div>
               <label>Full Name</label>
-              <input type="text" name="name" onChange={handleChange} value={form.name} />
+              <input type="text" name="fullName" onChange={handleChange} value={form.fullName} />
             </div>
 
             <div>

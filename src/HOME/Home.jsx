@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import doc1 from "../assets/d1.webp";
@@ -42,58 +43,22 @@ const Home = () => {
   const prevTestimonial = () => {
     setCurrent(current === 0 ? testimonials.length - 1 : current - 1);
   };
-  const doctors = [
-    {
-      name: "Dr. Apeksha Rai",
-      spec: "Orthopaedic Surgeon",
-      img: doc1,
-    },
-    {
-      name: "Dr. Shivansh Agrawal",
-      spec: "GI & Bariatric Surgeon",
-      img: doc2,
-    },
-    {
-      name: "Dr. Aditya Jain",
-      spec: "Neurosurgeon",
-      img: doc3,
-    },
-    {
-      name: "Dr. Piet Lunre",
-      spec: "Neonatologist",
-      img: doc4,
-    },
-    {
-      name: "Dr. Nikhil Joshi",
-      spec: "Dermatologist",
-      img: doc5,
-    },
-    {
-      name: "Dr. Apeksha Rai",
-      spec: "Orthopaedic Surgeon",
-      img: doc1,
-    },
-    {
-      name: "Dr. Shivansh Agrawal",
-      spec: "GI & Bariatric Surgeon",
-      img: doc2,
-    },
-    {
-      name: "Dr. Aditya Jain",
-      spec: "Neurosurgeon",
-      img: doc3,
-    },
-    {
-      name: "Dr. Piet Lunre",
-      spec: "Neonatologist",
-      img: doc4,
-    },
-    {
-      name: "Dr. Nikhil Joshi",
-      spec: "Dermatologist",
-      img: doc5,
-    },
-  ];
+
+  const [doctors, setDoctors] = useState([]);
+
+  const fetchDoctors = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/doctors");
+      setDoctors(res.data);
+    } catch (error) {
+      console.error("Failed to load doctors", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
+
 
   return (
     <div className="home">
@@ -244,15 +209,15 @@ const Home = () => {
             1024: { slidesPerView: 4 },
           }}
         >
-          {doctors.map((doc, index) => (
-            <SwiperSlide key={index}>
+          {doctors.map((doc) => (
+            <SwiperSlide key={doc._id}>
               <div className="doctor-card">
                 <div className="doctor-img">
-                  <img src={doc.img} alt={doc.name} />
+                  <img src={`http://localhost:5000${doc.image}`} alt={doc.name} />
                 </div>
 
                 <h4>{doc.name}</h4>
-                <p>{doc.spec}</p>
+                <p>{doc.title}</p>
               </div>
             </SwiperSlide>
           ))}
