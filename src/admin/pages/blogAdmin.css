@@ -1,0 +1,116 @@
+
+/* common admin background */
+.admin-main {
+  background: #f4f6f9;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* ===== BLOG LIST ===== */
+.blog-admin {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.blog-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.blog-admin-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.add-btn {
+  background: #1976d2;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.add-btn:hover {
+  background: #125aa3;
+}
+
+/* table */
+.blog-admin table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.blog-admin th {
+  text-align: left;
+  background: #f1f3f6;
+  padding: 14px;
+  font-weight: 600;
+}
+
+.blog-admin td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.actions a {
+  margin-right: 15px;
+  color: #1976d2;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #e53935;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ===== ADD / EDIT FORM ===== */
+.blog-form {
+  background: #ffffff;
+  max-width: 800px;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.blog-form h2 {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.blog-form input,
+.blog-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.blog-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.blog-form button {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.blog-form button:hover {
+  background: #125aa3;
+}
