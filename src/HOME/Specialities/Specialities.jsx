@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Specialities.css";
 import bannerImg from "../../assets/Specilities.jpg";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   FaHeartbeat,
@@ -9,75 +11,70 @@ import {
   FaUserMd,
   FaProcedures,
   FaStethoscope,
+  FaEye,
+  FaBaby,
+  FaXRay,
+  FaAllergies,
 } from "react-icons/fa";
 
-const specialitiesData = [
-  {
-    icon: <FaProcedures />,
-    title: "Cardio Thoracic & Vascular Surgery",
-    doctors: [
-      { name: "Dr. A", type: "Consultant Surgeon" },
-      { name: "Dr. B", type: "Consultant Surgeon" },
-    ],
-  },
-  {
-    icon: <FaHeartbeat />,
-    title: "Cardiology",
-    doctors: [
-      { name: "Dr. Vidyut Jain", type: "Consultant Cardiologist" },
-      { name: "Dr. Girish Kawthekar", type: "Consultant Cardiologist" },
-      { name: "Dr. Rajeev Khare", type: "Interventional Cardiologist" },
-      {
-        name: "Dr. Paritosh Kumar Rajput",
-        type: "Consultant Interventional Cardiologist",
-      },
-    ],
-  },
-  {
-    icon: <FaStethoscope />,
-    title: "Otolaryngology (ENT)",
-    doctors: [
-      { name: "Dr. ENT 1", type: "Consultant ENT" },
-      { name: "Dr. ENT 2", type: "Consultant ENT" },
-    ],
-  },
-  {
-    icon: <FaBrain />,
-    title: "Neurosurgery",
-    doctors: [
-      { name: "Dr. A", type: "Consultant Surgeon" },
-      { name: "Dr. B", type: "Consultant Surgeon" },
-    ],
-  },
-  {
-    icon: <FaUserMd />,
-    title: "Neurology",
-    doctors: [
-      { name: "Dr. Vidyut Jain", type: "Consultant Cardiologist" },
-      { name: "Dr. Girish Kawthekar", type: "Consultant Cardiologist" },
-      { name: "Dr. Rajeev Khare", type: "Interventional Cardiologist" },
-      {
-        name: "Dr. Paritosh Kumar Rajput",
-        type: "Consultant Interventional Cardiologist",
-      },
-    ],
-  },
-  {
-    icon: <FaBone />,
-    title: "Orthopaedic Surgery",
-    doctors: [
-      { name: "Dr. ENT 1", type: "Consultant ENT" },
-      { name: "Dr. ENT 2", type: "Consultant ENT" },
-    ],
-  },
-];
+const getIconByTitle = (title) => {
+  const t = title.toLowerCase();
+
+  if (t.includes("cardio")) return <FaHeartbeat />;
+  if (t.includes("neuro")) return <FaBrain />;
+  if (t.includes("ortho")) return <FaBone />;
+  if (t.includes("ophthal") || t.includes("eye")) return <FaEye />;
+  if (t.includes("derma") || t.includes("skin")) return <FaAllergies />;
+  if (t.includes("radio")) return <FaXRay />;
+  if (t.includes("neo")) return <FaBaby />;
+
+  return <FaUserMd />; // fallback
+};
 
 const Specialities = () => {
+  const [specialities, setSpecialities] = useState([]);
   const [expanded, setExpanded] = useState(null);
+  const navigate = useNavigate();
 
   const toggleExpand = (index) => {
     setExpanded(expanded === index ? null : index);
   };
+
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/doctors");
+
+        // 🔥 Group doctors by title (SPECIALITY)
+        const grouped = res.data.reduce((acc, doctor) => {
+          const speciality = doctor.title;
+
+          if (!acc[speciality]) {
+            acc[speciality] = {
+              title: speciality,
+              icon: getIconByTitle(speciality),
+              doctors: [],
+            };
+          }
+
+          acc[speciality].doctors.push({
+            _id: doctor._id,
+            name: doctor.name,
+            contact: doctor.contact,
+            image: doctor.image,
+          });
+
+          return acc;
+        }, {});
+
+        setSpecialities(Object.values(grouped));
+      } catch (error) {
+        console.error("Failed to fetch doctors", error);
+      }
+    };
+
+    fetchDoctors();
+  }, []);
 
   return (
     <div className="specialities-page">
@@ -94,12 +91,11 @@ const Specialities = () => {
 
       {/* Cards */}
       <div className="specialities-container">
-        {specialitiesData.map((item, index) => (
+        {specialities.map((item, index) => (
           <div
             key={index}
-            className={`speciality-card ${
-              expanded === index ? "expanded" : ""
-            }`}
+            className={`speciality-card ${expanded === index ? "expanded" : ""
+              }`}
             onClick={() => toggleExpand(index)}
           >
             <div className="icon">{item.icon}</div>
@@ -107,13 +103,22 @@ const Specialities = () => {
 
             {/* Doctors list */}
             <div className={`doctors-list ${expanded === index ? "show" : ""}`}>
-              {item.doctors.map((doc, i) => (
-                <div className="doctor" key={i}>
+              {item.doctors.map((doc) => (
+                <div className="doctor" key={doc._id}>
                   <div>
                     <p className="doctor-name">{doc.name}</p>
-                    <p className="doctor-type">{doc.type}</p>
+                    <p className="doctor-type">{item.title}</p>
                   </div>
-                  <button className="book-btn">Book Now</button>
+                  <button
+                    className="book-btn"
+                    onClick={(e) => {
+                      e.stopPropagation(); // card expand click avoid
+                      navigate(`/book-appointment/${doc._id}`);
+                    }}
+                  >
+                    Book Now
+                  </button>
+
                 </div>
               ))}
             </div>

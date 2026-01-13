@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./BookAppointment.css";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const BookAppointment = () => {
   const [isReschedule, setIsReschedule] = useState(false);
   const [appointmentId, setAppointmentId] = useState("");
+
+  const { doctorId } = useParams();
 
   const [doctors, setDoctors] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -32,18 +35,32 @@ const BookAppointment = () => {
         const res = await axios.get("http://localhost:5000/api/doctors");
         setDoctors(res.data);
 
-        // unique departments from doctor.title
         const uniqueDepartments = [
           ...new Set(res.data.map((doc) => doc.title)),
         ];
         setDepartments(uniqueDepartments);
+
+        // 🔥 IF coming from Specialities (doctorId exists)
+        if (doctorId) {
+          const selectedDoctor = res.data.find(
+            (doc) => doc._id === doctorId
+          );
+
+          if (selectedDoctor) {
+            setForm((prev) => ({
+              ...prev,
+              department: selectedDoctor.title,
+              doctor: selectedDoctor.name,
+            }));
+          }
+        }
       } catch (error) {
         console.error("Failed to load doctors");
       }
     };
 
     fetchDoctors();
-  }, []);
+  }, [doctorId]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -100,7 +117,7 @@ const BookAppointment = () => {
     <div className="app-wrapper">
       <div className="form-container">
         <div className="switch-buttons">
-          <button 
+          <button
             className={!isReschedule ? "active-btn" : ""}
             onClick={() => setIsReschedule(false)}
           >
@@ -118,7 +135,7 @@ const BookAppointment = () => {
         <h1>{isReschedule ? "Reschedule Appointment" : "Book Appointment"}</h1>
 
         <form onSubmit={handleSubmit}>
-          
+
           {isReschedule && (
             <div className="single-row">
               <label>Appointment ID</label>
@@ -152,8 +169,8 @@ const BookAppointment = () => {
               >
                 <option value="">Select Doctor</option>
                 {doctors
-                .filter((doc) => doc.title === form.department)
-                .map((doc) => (
+                  .filter((doc) => doc.title === form.department)
+                  .map((doc) => (
                     <option key={doc._id} value={doc.name}>{doc.name}</option>
                   ))}
               </select>
@@ -219,23 +236,23 @@ const BookAppointment = () => {
             {isReschedule ? "Update Appointment" : "Book Appointment"}
           </button>
         </form>
-    {lastStatus && (
-  <div className="status-box">
-    <h3> Your Appointment Booked Successfully </h3>
-    <p><strong>Appointment ID:</strong> {lastAppointmentId}</p>
+        {lastStatus && (
+          <div className="status-box">
+            <h3> Your Appointment Booked Successfully </h3>
+            <p><strong>Appointment ID:</strong> {lastAppointmentId}</p>
 
-    <p>
-      <strong>Status:</strong>{" "}
-      <span style={{ color: "orange", fontWeight: "bold" }}>
-        {lastStatus}
-      </span>
-    </p>
+            <p>
+              <strong>Status:</strong>{" "}
+              <span style={{ color: "orange", fontWeight: "bold" }}>
+                {lastStatus}
+              </span>
+            </p>
 
-    <p style={{ fontSize: "16px", color: "#b42121ff" }}>
-      Please wait for doctor confirmation.
-    </p>
-  </div>
-)}
+            <p style={{ fontSize: "16px", color: "#b42121ff" }}>
+              Please wait for doctor confirmation.
+            </p>
+          </div>
+        )}
 
       </div>
     </div>
