@@ -1,0 +1,28 @@
+.all-lab-container {
+  padding: 20px;
+}
+
+.all-lab-container h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.all-lab-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.all-lab-container th,
+.all-lab-container td {
+  border: 1px solid #2e6db1;
+  padding: 12px;
+  text-align: center;
+}
+
+.all-lab-container th {
+  background: #21658f;
+  font-weight: bold;
+}

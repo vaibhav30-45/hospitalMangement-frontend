@@ -49,13 +49,13 @@ const Sidebar = () => {
     </li>
 
         <li>
-          <Link to="/admin/laboratory" className="menu-item">
+          <Link to="/admin/lab-tests" className="menu-item">
             <FaFlask /> Laboratory
           </Link>
         </li>
 
         <li>
-          <Link to="/admin/bloodlink" className="menu-item">
+          <Link to="/admin/blood-requests" className="menu-item">
             <FaTint /> Bloodlink
           </Link>
         </li>

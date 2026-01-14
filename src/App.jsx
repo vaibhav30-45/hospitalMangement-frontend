@@ -8,6 +8,8 @@ import BlogManager from "./admin/pages/BlogManager";
 import AddBlog from "./admin/pages/AddBlog";
 import EditBlog from "./admin/pages/EditBlog";
 import AdminLogin from "./admin/components/AdminLogin";
+import AllBloodRequests from "./admin/pages/AllBloodRequests";
+import AllLabTests from "./admin/pages/AllLabTests";
 
 
 function App() {
@@ -24,6 +26,9 @@ function App() {
           <Route path="blogs/add" element={<AddBlog />} />
           <Route path="blogs/edit/:id" element={<EditBlog />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/blood-requests" element={<AllBloodRequests />} />
+          <Route path="/admin/lab-tests" element={<AllLabTests />} />
+
           </Route>
           </Routes>
           </BrowserRouter>

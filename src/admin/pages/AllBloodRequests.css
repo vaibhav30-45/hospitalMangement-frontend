@@ -1,0 +1,28 @@
+.all-blood-container {
+  padding: 20px;
+}
+
+.all-blood-container h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.all-blood-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.all-blood-container th,
+.all-blood-container td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.all-blood-container th {
+  background: #007bff;
+  font-weight: bold;
+}

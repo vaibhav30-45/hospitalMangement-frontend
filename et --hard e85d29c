@@ -1,0 +1,13 @@
+[33m3739cf4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32muser[m[33m, [m[1;31morigin/user[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33me85d29c[m HEAD@{1}: commit: local changes updated
+[33m3739cf4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32muser[m[33m, [m[1;31morigin/user[m[33m)[m HEAD@{2}: rebase (abort): returning to refs/heads/user
+[33mf36b5cb[m HEAD@{3}: rebase (continue): frontend hospital management initial commit
+[33mf9b628c[m[33m ([m[1;31morigin/hospital[m[33m)[m HEAD@{4}: pull origin hospital --rebase (start): checkout f9b628c2ab2457d1091615dd588b63887fe8b76f
+[33m3739cf4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32muser[m[33m, [m[1;31morigin/user[m[33m)[m HEAD@{5}: commit: local changes before pull
+[33m6393681[m HEAD@{6}: commit: frontend hospital management initial commit
+[33m55f241f[m HEAD@{7}: commit: Updated code
+[33me4344ee[m[33m ([m[1;32mhospital[m[33m)[m HEAD@{8}: checkout: moving from hospital to user
+[33me4344ee[m[33m ([m[1;32mhospital[m[33m)[m HEAD@{9}: commit: first commit
+[33m1017089[m HEAD@{10}: commit: first commit
+[33m415f4af[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/blood_module[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{11}: checkout: moving from main to hospital
+[33m415f4af[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/blood_module[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: clone: from https://github.com/vaibhav30-45/hospitalMangement-frontend.git
